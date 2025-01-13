@@ -224,13 +224,13 @@ if test "$enable_runtime" = "libicu" -o "$enable_runtime" = "auto"; then
     fi
   ], [
     OLDLIBS=$LIBS
-    LIBS="-licuuc $LIBS"
+    LIBS="$LIBS"
     AC_MSG_CHECKING([for ICU unicode library])
     AC_LINK_IFELSE(
       [AC_LANG_PROGRAM(
         [[#include <unicode/ustring.h>]],
         [[u_strToUTF8(NULL, 0, NULL, NULL, 0, NULL);]])],
-      [HAVE_LIBICU=yes; LIBICU_LIBS="-licuuc"; AC_MSG_RESULT([yes])],
+      [HAVE_LIBICU=yes; LIBICU_LIBS="$LIBS"; AC_MSG_RESULT([yes])],
       [ AC_MSG_RESULT([no]);
         if test "$enable_runtime" = "libicu"; then
           AC_MSG_ERROR(You requested libicu but it is not installed.)
